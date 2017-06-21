@@ -1,58 +1,50 @@
-// promise handles only one response for a callback and makes things more readable
-// // Standard callback
-// function getTempCallback(location, callback) {
-//     callback(undefined, 78);
-//     callback('City not found');
+// function getTempCallback (location, callback) {
+//   callback(undefined, 78);
+//   callback('City not found');
 // }
 //
-// getTempCallback('Philadelpha', function (err, temp) {
-//     if (err) {
-//         console.log('error', err);
-//     } else {
-//         console.log('success', temp)
-//     }
+// getTempCallback('Philadelphia', function (err, temp) {
+//   if (err) {
+//     console.log('error', err);
+//   } else {
+//     console.log('success', temp)
+//   }
 // });
 //
-// // Exact same functionality using promise
 // function getTempPromise (location) {
 //   return new Promise(function (resolve, reject) {
-//     setTimeout(function() {
+//     setTimeout(function () {
 //       resolve(79);
 //       reject('City not found');
-//     }, 1000); // milliseconds
+//     }, 1000);
 //   });
 // }
 //
-// getTempPromise('Philadelpha').then(function (temp) {
-//   console.log('promise success', temp)
+// getTempPromise('Philadelphia').then(function (temp) {
+//   console.log('promise success', temp);
 // }, function (err) {
-//   console.console.log('promise error', err);
-// })
-
-
+//   console.log('promise error', err);
+// });
 
 // Challenge Area
 function addPromise (a, b) {
-  return new Promise (function (resolve, reject) {
-    if (typeof a === 'number' && typeof b === "number") {
+  return new Promise(function (resolve, reject) {
+    if (typeof a === 'number' && typeof b === 'number') {
       resolve(a + b);
     } else {
-      reject('A & B need to be numbers')
+      reject('A & b need to be numbers');
     }
   });
 }
 
-// This passes
-addPromise(5, 7).then(function (sum) {
-  console.log('success', sum)
+addPromise(2, 3).then(function (sum) {
+  console.log('success', sum);
 }, function (err) {
-  console.log('error', err)
-})
+  console.log('error', err);
+});
 
-// This fails
-addPromise(5, 7).then(function (sum) {
-  console.log('success', sum)
+addPromise('andrew', 9).then(function (sum) {
+  console.log('this should not show up');
 }, function (err) {
-  console.log('error', err)
-})
-// run in terminal with node example-promise.js
+  console.log('This should appear', err);
+});
